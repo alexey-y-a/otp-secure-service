@@ -36,4 +36,7 @@ public class OtpCode {
     private OtpStatus status = OtpStatus.ACTIVE;
 
     private String operationId;
+
+    private String destination;
+    private String channel;
 }
