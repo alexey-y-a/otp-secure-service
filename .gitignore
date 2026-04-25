@@ -34,3 +34,9 @@ dependency-reduced-pom.xml
 *.iml
 .idea/
 wallets/
+
+
+.gradle/
+build/
+*.jar
+*.log
