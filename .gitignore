@@ -40,3 +40,6 @@ wallets/
 build/
 *.jar
 *.log
+otp_codes.log
+logs/
+.env
