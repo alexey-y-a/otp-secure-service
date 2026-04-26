@@ -43,3 +43,6 @@ build/
 otp_codes.log
 logs/
 .env
+*.env
+
+run.sh
