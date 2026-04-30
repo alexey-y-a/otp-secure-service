@@ -234,7 +234,9 @@ curl -X PUT "http://localhost:8080/api/admin/config?codeLength=8&ttlMinutes=10" 
 
 ### File рассылка
 
-Код сохраняется в файл `otp_codes.log` в корне проекта.
+Код сохраняется в файл `otp_codes.log` в корне проекта:
+
+![File OTP](screenshots/file-otp.png)
 
 ### SMS рассылка (SMPP эмулятор)
 
@@ -300,6 +302,7 @@ src/main/java/ru/alexey/otpsecureservice/
 │   └── NotificationFacade.java          # Фасад для выбора канала
 └── screenshots
     ├── email-otp.png
+    ├── file-otp.png
     └── telegram-otp.png
 
 src/main/resources/
