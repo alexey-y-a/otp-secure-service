@@ -10,6 +10,7 @@
 - [Требования](#требования)
 - [Установка и запуск](#установка-и-запуск)
 - [Тестирование API](#тестирование-api)
+- [Результаты работы каналов доставки](#результаты-работы-каналов-доставки)
 - [Переменные окружения](#переменные-окружения)
 - [Структура проекта](#структура-проекта)
 
@@ -183,7 +184,7 @@ curl -X POST "http://localhost:8080/api/otp/generate?channel=SMS&destination=pho
 
 - Генерация OTP кода (Email)
 ```
-вместо your@eamil.com укажите ваш email адрес,
+вместо your@email.com укажите ваш email адрес,
 
 curl -X POST "http://localhost:8080/api/otp/generate?channel=EMAIL&destination=your@email.com&operationId=test" \
   -H "Authorization: Bearer <ваш_токен>"
@@ -214,6 +215,30 @@ curl -X GET http://localhost:8080/api/admin/config \
 curl -X PUT "http://localhost:8080/api/admin/config?codeLength=8&ttlMinutes=10" \
   -H "Authorization: Bearer <admin_токен>"
 ```
+
+---
+
+## Результаты работы каналов доставки
+
+### Email рассылка
+
+Пользователь получает письмо с OTP кодом на указанный email:
+
+![Email OTP](screenshots/email-otp.png)
+
+### Telegram рассылка
+
+Пользователь получает сообщение с OTP кодом в Telegram:
+
+![Telegram OTP](screenshots/telegram-otp.png)
+
+### File рассылка
+
+Код сохраняется в файл `otp_codes.log` в корне проекта.
+
+### SMS рассылка (SMPP эмулятор)
+
+В логах приложения видно сообщение об успешной отправке SMS через SMPP эмулятор.
 
 ---
 
@@ -266,13 +291,16 @@ src/main/java/ru/alexey/otpsecureservice/
 │   ├── UserService.java                 # Регистрация, логин
 │   ├── OtpService.java                  # Генерация, валидация
 │   └── OtpConfigService.java            # Настройки и scheduled task
-└── notification/                        # Каналы доставки
-    ├── NotificationService.java         # Интерфейс
-    ├── EmailNotificationService.java    # Email (SMTP)
-    ├── SmsNotificationService.java      # SMS (SMPP эмулятор)
-    ├── TelegramNotificationService.java # Telegram Bot API
-    ├── FileNotificationService.java     # Сохранение в файл
-    └── NotificationFacade.java          # Фасад для выбора канала
+├── notification/                        # Каналы доставки
+│   ├── NotificationService.java         # Интерфейс
+│   ├── EmailNotificationService.java    # Email (SMTP)
+│   ├── SmsNotificationService.java      # SMS (SMPP эмулятор)
+│   ├── TelegramNotificationService.java # Telegram Bot API
+│   ├── FileNotificationService.java     # Сохранение в файл
+│   └── NotificationFacade.java          # Фасад для выбора канала
+└── screenshots
+    ├── email-otp.png
+    └── telegram-otp.png
 
 src/main/resources/
 ├── application.yml                      # Конфигурация (секреты через env)
